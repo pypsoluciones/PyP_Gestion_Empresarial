@@ -511,10 +511,11 @@
                     body: JSON.stringify({ email: user, password: pass })
                 });
 
-                const data = await res.json();
+                
 
-                if (data.error) {
-                    mostrarError(data.error_description || "Credenciales incorrectas.");
+                if (!res.ok || !data.access_token) {
+                    const msj = data.error_description || data.msg || (res.status === 400 ? "Usuario o contraseña incorrectos." : "No se pudo iniciar sesión. Intente de nuevo.");
+                    mostrarError(msj);
                     return;
                 }
 
