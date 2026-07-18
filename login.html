@@ -511,7 +511,7 @@
                     body: JSON.stringify({ email: user, password: pass })
                 });
 
-                
+                const data = await res.json();
 
                 if (!res.ok || !data.access_token) {
                     const msj = data.error_description || data.msg || (res.status === 400 ? "Usuario o contraseña incorrectos." : "No se pudo iniciar sesión. Intente de nuevo.");
@@ -567,9 +567,10 @@
                 setTimeout(() => { window.location.href = 'admin_dashboard.html'; }, 520);
 
             } catch (error) {
-    console.error("Fallo en procesarLogin:", error);
-    mostrarError("Error al procesar el acceso: " + (error.message || "revise su conexión."));
-}        }
+                console.error("Fallo en procesarLogin:", error);
+                mostrarError("Error al procesar el acceso: " + (error.message || "revise su conexión."));
+            }
+        }
     </script>
 </body>
 </html>
