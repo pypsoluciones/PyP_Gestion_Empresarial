@@ -567,9 +567,9 @@
                 setTimeout(() => { window.location.href = 'admin_dashboard.html'; }, 520);
 
             } catch (error) {
-                mostrarError("Error conectando al servidor.");
-            }
-        }
+    console.error("Fallo en procesarLogin:", error);
+    mostrarError("Error al procesar el acceso: " + (error.message || "revise su conexión."));
+}        }
     </script>
 </body>
 </html>
