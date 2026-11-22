@@ -1,32 +1,35 @@
 <!-- INICIO_S000 -->
+<!-- CIERRE_S001 -->
 # ESTADO DEL PROYECTO · PyP Gestión Empresarial
 
-_Foto actual. Se REEMPLAZA entera en cada cierre. Actualizado: 2026-11-21 (sesión 000)._
+_Foto actual. Se REEMPLAZA entera en cada cierre. Actualizado: 2026-11-22 (cierre sesión 001)._
 
 ## Identidad
-- **Producto:** ERP/backoffice de facturación y gestión (POS, inventario, compras, caja, bancos, CxC, nómina, servicios) + tienda/catálogo público PWA.
-- **URL en producción:** https://pypsoluciones.pypcloud.com/ (Cloudflare).
-- **Repositorio:** pypsoluciones/PyP_Gestion_Empresarial (antes `pypsoluciones/pyp-plus-core`; renombrado el 2026-11-21).
-- **Ruta en el PC:** `D:\Proyectos\PyP_Gestion_Empresarial`.
+- **Producto:** ERP de facturación y gestión (POS, inventario, compras, caja, bancos, CxC, nómina, servicios) + catálogo público PWA (`tienda.html`).
+- **URL en producción:** https://pypsoluciones.pypcloud.com/ (Cloudflare Workers and Pages, app de GitHub instalada).
+- **Repositorio:** pypsoluciones/PyP_Gestion_Empresarial (antes `pyp-plus-core`). Cuenta personal de GitHub, no organización.
+- **Ruta en el PC:** `D:\Proyectos\PyP_Gestion_Empresarial`. Git: el de GitHub Desktop (no está en el PATH).
 
 ## Versiones
-- **Versión visible:** ⬜ por confirmar (no se encontró marca de versión en el código).
-- **Último parche:** ninguno (repo recuperado desde GitHub tras perder el disco; último commit en GitHub del 18-07-2026, «act»).
-- **Prefijo de parches:** ⬜ por confirmar · **siguiente migración:** ⬜ por confirmar (no hay carpeta de migraciones en el repo).
+- **Versión visible:** G002 (pie del menú lateral de la app React, `app/src/version.ts`).
+- **Último parche:** G002 (quitar Vercel). **Siguiente parche:** G003.
+- **Prefijo de parches:** G · **siguiente migración SQL:** ⬜ por confirmar (aún no hay migraciones en el repo).
 
-## Qué funciona
-- ⬜ por confirmar en producción. El repo contiene 23 páginas `admin_*.html`, `tienda.html`, `login.html`, `index.html`, `memorai.html`.
+## Qué funciona (probado en el PC con G001_prueba y G002_prueba: TODO OK)
+- Páginas HTML antiguas en `public/`, mismas URLs. Su CSS (`public/styles.css`) sale idéntico al de antes.
+- App React (Vite + TypeScript + Tailwind) en `/app/`: layout, menú lateral, barra móvil, sesión compartida con `login.html`, Dashboard.
+- 14 pruebas de cálculo del Dashboard (`npm test`) y build completo (`npm run build` → `dist/`).
 
 ## Qué está roto / pendiente inmediato
-1. **Cloudflare tras el renombre:** confirmar en Cloudflare (Workers & Pages → proyecto → Settings → Builds) que sigue conectado al repo con nombre nuevo y que el último deploy salió bien.
-2. **Build:** `styles.css` NO está en el repo; Cloudflare debe correr `npm run build` (Tailwind). ⬜ por confirmar el comando de build configurado en Cloudflare.
-3. **Dominio viejo:** `sitemap.xml`, `robots.txt` y `README.md` apuntan a `pypsoluciones.vercel.app`, no a `pypsoluciones.pypcloud.com`.
-4. **Enlaces rotos en el menú:** `menu.js` enlaza `admin_verificacion_cierres.html` y `admin_perfil.html`, que no existen en el repo.
-5. **SQL de Supabase:** no hay migraciones ni funciones en el repo; el esquema vive solo en Supabase. Hay que respaldarlo.
-6. **Manual:** no existe MANUAL_*.md.
+1. **MANUAL:** no existe `MANUAL_*.md`; el Dashboard nuevo y el cambio de dominio no están documentados para el usuario.
+2. **Publicar G001+G002:** commit en la rama `react-base`, vista previa en Cloudflare, y luego pasar a `main`. Antes: en Cloudflare, build `npm run build` y salida `dist`. ⬜ por confirmar que se hizo.
+3. **Login → Dashboard nuevo:** `login.html` y `menu.js` aún llevan a `admin_dashboard.html` (viejo). Cambiar cuando se apruebe el de React.
+4. **Notificaciones:** la campana (`notificaciones.js`) no está en la app React.
+5. **Supabase:** el esquema no está en el repo; la columna `empresas.subdominio_vercel` conserva ese nombre (renombrar = migración que toca vistas).
+6. **Menú:** `admin_verificacion_cierres.html` y `admin_perfil.html` no existen (en React salen como «pendiente»).
+7. **Vercel:** quitado de GitHub (About, app, deployments). Revisar los demás proyectos en su propia sesión.
 
 ## Registros externos (dónde, nunca claves)
-- **GitHub:** organización `pypsoluciones`.
+- **GitHub:** cuenta `pypsoluciones`. Apps instaladas: Cloudflare Workers and Pages, coderabbitai.
 - **Cloudflare:** despliegue de https://pypsoluciones.pypcloud.com/.
-- **Supabase:** proyecto ref `icvfmdvvochzaktugqvj` (URL y clave anon en `config.js`).
-- **Vercel:** dominio antiguo `pypsoluciones.vercel.app` (⬜ por confirmar si sigue activo).
+- **Supabase:** proyecto ref `icvfmdvvochzaktugqvj` (URL y clave anon en `public/config.js`).

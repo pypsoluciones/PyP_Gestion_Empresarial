@@ -27,3 +27,16 @@ _Cómo está hecho. Se agrega o se corrige la línea afectada._
 ## Trampas conocidas
 - `styles.css` se genera en el build: si el build de Cloudflare no corre `npm run build`, las páginas que lo usan salen sin estilos.
 - El esquema SQL no está en el repo: para cambiar una función hay que leer antes su definición viva (`pg_get_functiondef`).
+
+<!-- CIERRE_S001 -->
+## Estructura desde G001 (corrige «Estructura (raíz, sin carpetas)» y «Stack»)
+- `public/`: todas las páginas HTML/JS antiguas, `config.js`, manifiestos, `robots.txt`, `sitemap.xml`, `_redirects`. Se copian tal cual a `dist/`.
+- `app/`: app React. `app/index.html` (carga `/config.js`), `app/src/main.tsx`, `App.tsx` (rutas), `menu.ts` (menú: `ruta` = migrado, `href` = HTML viejo), `version.ts`, `components/` (Layout, Sidebar, NavMovil), `pages/` (Dashboard), `lib/` (supabase, sesion, tema, formato, badges, dashboard + pruebas).
+- Build: `npm run build` = `build:legacy` (Tailwind CLI con `tailwind.config.cjs` → `public/styles.css`) + `build:app` (`tsc` + Vite con `tailwind.app.config.cjs`). Salida `dist/`; React queda en `dist/app/`.
+- Pruebas: `npm test` (vitest, zona horaria America/Caracas). Node 20 (`.nvmrc`).
+- Local: `npm run dev` y abrir `http://localhost:5173/login.html`.
+
+## Trampas nuevas
+- `public/styles.css`, `dist/` y `node_modules/` no se versionan (`.gitignore`).
+- La sesión la crea solo `login.html`; React no refresca el token: 401/403 → vuelve al login.
+- Los colores y la fuente de marca blanca vienen de `localStorage` (`pyp_color_*`, `pyp_fuente`, `pyp_tamano`); en React el tamaño mínimo es 14 px.
