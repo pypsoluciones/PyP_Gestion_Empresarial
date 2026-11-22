@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Config. Página Web</title>
-    <!-- VERSION: B3.1-v2 (2026-05-11) - Si ves la versión vieja con sidebar propio en pantalla, el caché de Vercel/navegador está sirviendo el archivo viejo. Recarga forzada con Ctrl+Shift+R -->
+    <!-- VERSION: B3.1-v2 (2026-05-11) - Si ves la versión vieja con sidebar propio en pantalla, el caché de Cloudflare/navegador está sirviendo el archivo viejo. Recarga forzada con Ctrl+Shift+R -->
 
     <script>
         // Paleta corporativa del SaaS (NO los colores del catálogo del cliente)
@@ -1238,8 +1238,8 @@ async function detectarEmpresaUsuario() {
             urlCatalogo = `https://${EMPRESA_INFO.dominio_personalizado}`;
             dominioVisible = EMPRESA_INFO.dominio_personalizado;
         } else if (EMPRESA_INFO.subdominio_vercel) {
-            urlCatalogo = `https://${EMPRESA_INFO.subdominio_vercel}.vercel.app`;
-            dominioVisible = `${EMPRESA_INFO.subdominio_vercel}.vercel.app`;
+            urlCatalogo = `https://${EMPRESA_INFO.subdominio_vercel}.pypcloud.com`;
+            dominioVisible = `${EMPRESA_INFO.subdominio_vercel}.pypcloud.com`;
         }
         document.getElementById('empresa-link').href = urlCatalogo;
         document.getElementById('empresa-dominio').textContent = dominioVisible;

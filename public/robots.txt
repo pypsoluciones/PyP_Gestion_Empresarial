@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pypsoluciones.vercel.app/sitemap.xml
+Sitemap: https://pypsoluciones.pypcloud.com/sitemap.xml
