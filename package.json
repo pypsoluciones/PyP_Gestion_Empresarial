@@ -1,11 +1,31 @@
 {
-  "name": "pyp-erp-saas",
-  "version": "1.0.0",
+  "name": "pyp-gestion-empresarial",
+  "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "build": "tailwindcss -i ./input.css -o ./styles.css --minify"
+    "dev": "vite",
+    "build:legacy": "tailwindcss -c tailwind.config.cjs -i input.css -o public/styles.css --minify",
+    "build:app": "tsc --noEmit && vite build",
+    "build": "npm run build:legacy && npm run build:app",
+    "test": "vitest run",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "tailwindcss": "^3.4.1"
+    "@supabase/supabase-js": "2.45.4",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "6.28.0"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "@vitejs/plugin-react": "4.3.4",
+    "autoprefixer": "10.4.20",
+    "postcss": "8.4.49",
+    "tailwindcss": "3.4.15",
+    "typescript": "5.6.3",
+    "vite": "5.4.11",
+    "vitest": "2.1.8"
   }
 }

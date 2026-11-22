@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: var(--font-global, 'Inter', sans-serif);
+  font-size: var(--size-global, 14px);
+  background: #f1f5f9;
+}
+
+@layer utilities {
+  .custom-scroll::-webkit-scrollbar { width: 5px; height: 5px; }
+  .custom-scroll::-webkit-scrollbar-thumb { background-color: var(--color-primary); border-radius: 4px; }
+}
+
+/* Modo privado: oculta montos */
+.modo-privado .dato-sensible { filter: blur(7px); user-select: none; }

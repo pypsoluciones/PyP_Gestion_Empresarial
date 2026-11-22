@@ -1,0 +1,7 @@
+node_modules/
+dist/
+public/styles.css
+.env
+.env.*
+*.bak
+.bak/
